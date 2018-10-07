@@ -10,6 +10,7 @@
 		<module>stereo-autowiring</module>
 		<module>stereo-javaconfig</module>
 		<module>stereo-xmlconfig</module>
+		<module>stereo-mixconfig</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
