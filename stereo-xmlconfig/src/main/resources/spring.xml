@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- named as soundsystem.SgtPeppers#0 -->
+	<bean class="soundsystem.SgtPeppers">
+		<property name="title" value="First" />
+	</bean>
+
+	<!-- named as soundsystem.SgtPeppers#1 -->
+	<bean class="soundsystem.SgtPeppers">
+		<property name="title" value="Second" />
+	</bean>
+
+	<bean id="sgtPeppers" class="soundsystem.SgtPeppers">
+		<property name="title" value="Third" />
+	</bean>
+
+	<bean id="overTheHedge" class="soundsystem.OverTheHedge" />
+
+	<!-- Literal value injection in constructor -->
+	<!-- <bean id="blankDisc" class="soundsystem.BlankDisc"> <constructor-arg 
+		value="Test Title for blank"/> <constructor-arg value="Test Artist for blank"/> 
+		</bean> -->
+
+	<!-- Literal value injection in constructor using c-namespace -->
+	<!-- <bean id="blankDisc" class="soundsystem.BlankDisc" c:title="Test Title 
+		for blank" c:artist="Test Artist for blank" /> -->
+
+	<!-- Literal value injection in constructor using c-namespace index -->
+	<bean id="blankDisc" class="soundsystem.BlankDisc"
+		c:_0="Test Title for blank" c:_1="Test Artist for blank" />
+
+	<!-- Collections wiring -->
+	<bean id="collections.blankDisc"
+		class="soundsystem.collections.BlankDisc">
+		<constructor-arg value="Test Title for blank" />
+		<constructor-arg value="Test Artist for blank" />
+		<constructor-arg>
+			<list>
+				<value>Sgt. Pepper's Lonely Hearts Club Band</value>
+				<value>With a Little Help from My Friends</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- Constructor Injection -->
+	<bean id="musicPlayer" class="soundsystem.CDPlayer">
+		<constructor-arg ref="sgtPeppers" />
+	</bean>
+
+	<!-- c-namespace constructor injection with same name as parameter name -->
+	<!-- <bean id="animationPlayer" class="soundsystem.CDPlayer" c:cd-ref="overTheHedge" 
+		/> -->
+
+	<!-- OR using parameter position -->
+	<!-- <bean id="animationPlayer" class="soundsystem.CDPlayer" c:_0-ref="overTheHedge" 
+		/> -->
+
+	<!-- OR for a single arg constructor -->
+	<bean id="animationPlayer" class="soundsystem.CDPlayer"
+		c:_-ref="overTheHedge" />
+
+
+	<!-- Property Injection -->
+	<bean id="propertyInjected.musicPlayer"
+		class="soundsystem.CDPlayer">
+		<property name="cd" ref="sgtPeppers" />
+	</bean>
+
+	<!-- Property Injection with p-namespace -->
+	<bean id="propertyInjected.pnamespace.musicPlayer"
+		class="soundsystem.properties.CDPlayer" p:compactDisc-ref="sgtPeppers" />
+
+	<!-- Property Injection literal value and list -->
+	<bean id="propertyInjection.literal.blankDisc"
+		class="soundsystem.properties.BlankDisc">
+		<property name="title"
+			value="Sgt. Pepper's Lonely Hearts Club Band" />
+		<property name="artist" value="The Beatles" />
+		<property name="tracks">
+			<list>
+				<value>Sgt. Pepper's Lonely Hearts Club Band</value>
+				<value>With a Little Help from My Friends</value>
+			</list>
+		</property>
+	</bean>
+
+	<!--  shift the track list out of the BlankDisc bean and into a bean of its own  -->
+	<util:list id="trackList">
+		<value>Sgt. Pepper's Lonely Hearts Club Band</value>
+		<value>With a Little Help from My Friends</value>
+	</util:list>
+
+	<bean id="propertyInjection.literal.namespace.blankDisc"
+		class="soundsystem.properties.BlankDisc"
+		p:title="Sgt. Pepper's Lonely Hearts Club Band" 
+		p:artist="The Beatles"
+		p:tracks-ref="trackList" />
+
+</beans>
