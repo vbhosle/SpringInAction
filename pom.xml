@@ -11,6 +11,7 @@
 		<module>stereo-javaconfig</module>
 		<module>stereo-xmlconfig</module>
 		<module>stereo-mixconfig</module>
+		<module>advanced-wiring</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
