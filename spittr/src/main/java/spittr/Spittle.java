@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Spittle {
 	private final Long id;
@@ -24,6 +25,15 @@ public class Spittle {
 		this.latitude = latitude;
 	}
 
+	//for convinience, till we actually get the data from db
+	public Spittle(Long id, String message, Date time, Double longitude, Double latitude) {
+		this.id = id;
+		this.message = message;
+		this.time = time;
+		this.longitude = longitude;
+		this.latitude = latitude;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -52,5 +62,9 @@ public class Spittle {
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this, "id", "time");
+	}
+	
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 }
