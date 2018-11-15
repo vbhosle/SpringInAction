@@ -12,7 +12,8 @@
 		<module>stereo-mixconfig</module>
 		<module>advanced-wiring</module>
     <module>spittr</module>
-  </modules>
+    <module>aop</module>
+	</modules>
 	<dependencyManagement>
 		<dependencies>
 			<!-- https://mvnrepository.com/artifact/jstl/jstl -->
