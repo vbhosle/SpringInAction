@@ -7,7 +7,17 @@ public class AppMain {
 
 	public static void main(String args[]) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(ConcertConfig.class);
-		Performance performance = context.getBean("drama", Performance.class);
-		performance.perform();
+		Performance drama = context.getBean("drama", Performance.class);
+		drama.perform();
+		
+		System.out.println("\nNext performance ..\n");
+		
+		Performance circus = context.getBean("circus", Performance.class);
+		try {
+			circus.perform();
+		}
+		catch(PerformanceException ex) {
+			
+		}
 	}
 }

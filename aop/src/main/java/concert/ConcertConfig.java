@@ -16,6 +16,11 @@ public class ConcertConfig {
 	}
 	
 	@Bean
+	public Performance circus() {
+		return new Circus();
+	}
+	
+	@Bean
 	public Audience audience() {
 		return new Audience();
 	}
