@@ -48,4 +48,9 @@ public class SpittleController {
 		model.addAttribute("spittle", spittleRepository.findOne(spittleID));
 		return "spittle";
 	}
+	
+	@RequestMapping(value="/register", method= RequestMethod.GET)
+	public String showRegistrationForm() {
+		return "registerForm";
+	}
 }

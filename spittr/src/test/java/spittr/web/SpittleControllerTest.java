@@ -10,8 +10,6 @@ import java.util.*;
 
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultHandler;
 import org.springframework.web.servlet.view.InternalResourceView;
 
 import spittr.Spittle;
