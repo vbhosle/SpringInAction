@@ -27,6 +27,11 @@ public class SpittleController {
 	}
 	
 	//book lists different ways to write the spittles method
+	//Note: logical view name is inferred from the request path. Because this
+	//method handles GET requests for /spittles, the view name is spittles
+	/* When a handler method returns an object or a collection like this, the value returned is put
+	into the model, and the model key is inferred from its type (spittleList)
+	*/
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Spittle> spittles(
 			@RequestParam(value="max", defaultValue=MAX_LONG_AS_STRING) long max,
