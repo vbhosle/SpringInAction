@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -24,6 +25,7 @@ public class SpitterController {
 
 	private SpitterRepository spitterRepository;
 	
+	@Autowired
 	public SpitterController(SpitterRepository spitterRepository) {
 		this.spitterRepository = spitterRepository;
 	}

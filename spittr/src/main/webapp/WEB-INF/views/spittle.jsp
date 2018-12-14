@@ -10,12 +10,14 @@
 <body>
 	<c:choose>
 		<c:when test="${not empty spittle}">
-			<div class="spittleView">
+			<div class="spittleCard">
 				<div class="spittleMessage">
 					<c:out value="${spittle.message}" />
 				</div>
 				<div>
-					<span class="spittleTime"><c:out value="${spittle.time}" /></span>
+					<span class="spittleAuthor"><c:out
+							value="- ${spittle.spitter.firstName} ${spittle.spitter.lastName}" /></span>
+					<span class="spittleTime"><c:out value=" (${spittle.postedTime})" /></span>
 				</div>
 			</div>
 		</c:when>
