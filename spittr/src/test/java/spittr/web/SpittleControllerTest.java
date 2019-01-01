@@ -12,8 +12,8 @@ import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
 
-import spittr.Spittle;
 import spittr.data.SpittleRepository;
+import spittr.domain.Spittle;
 
 public class SpittleControllerTest {
 
@@ -35,7 +35,7 @@ public class SpittleControllerTest {
 	public void shouldShowPagedSpittles() throws Exception {
 		List<Spittle> expectedSpittles = createSpittleList(50);
 		SpittleRepository mockRepository = mock(SpittleRepository.class);
-		when(mockRepository.findSpittles(238900, 50)).thenReturn(expectedSpittles);
+		when(mockRepository.findRecent(10)).thenReturn(expectedSpittles);
 		SpittleController controller = new SpittleController(mockRepository);
 		MockMvc mockMvc = standaloneSetup(controller)
 				.setSingleView(new InternalResourceView("/WEB-INF/views/spittles.jsp")).build();
@@ -47,14 +47,14 @@ public class SpittleControllerTest {
 	private List<Spittle> createSpittleList(int count) {
 		List<Spittle> spittles = new ArrayList<Spittle>();
 		for (int i = 0; i < count; i++) {
-			spittles.add(new Spittle("Spittle " + i, new Date()));
+			spittles.add(new Spittle(null, null, "Spittle " + i, new Date()));
 		}
 		return spittles;
 	}
 
 	@Test
 	public void testSpittle() throws Exception {
-		Spittle expectedSpittle = new Spittle("Hello", new Date());
+		Spittle expectedSpittle = new Spittle(null, null, "Hello", new Date());
 		SpittleRepository mockRepository = mock(SpittleRepository.class);
 		when(mockRepository.findOne((long) 12345)).thenReturn(expectedSpittle);
 		SpittleController controller = new SpittleController(mockRepository);

@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import spittr.Spitter;
 import spittr.data.SpitterRepository;
+import spittr.domain.Spitter;
 
 public class SpitterControllerTest {
 
@@ -25,8 +25,8 @@ public class SpitterControllerTest {
 	@Test
 	public void shouldProcessRegistration() throws Exception {
 		SpitterRepository spitterRepository = mock(SpitterRepository.class);
-		Spitter unsaved = new Spitter("jbauer", "24hours", "Jack", "Bauer", "");
-		Spitter saved = new Spitter(24L, "jbauer", "24hours", "Jack", "Bauer", "");
+		Spitter unsaved = new Spitter(null,"jbauer", "24hours", "Jack Bauer", null, true);
+		Spitter saved = new Spitter(24L, "jbauer", "24hours", "Jack Bauer", null, true);
 		
 		when(spitterRepository.save(unsaved)).thenReturn(saved);
 		

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import spittr.Spitter;
 import spittr.data.SpitterRepository;
+import spittr.domain.Spitter;
 
 @Controller
 @RequestMapping("/spitter")
@@ -30,7 +30,7 @@ public class SpitterController {
 	
 	@RequestMapping(value="register", method= RequestMethod.GET)
 	public String showRegistrationForm(Model model) {
-		model.addAttribute("spitter",new Spitter());
+		model.addAttribute("spitter",new Spitter(null, null, null, null, null, false));
 		return "registerForm";
 	}
 	

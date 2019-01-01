@@ -1,11 +1,23 @@
 package spittr.data;
 
-import spittr.Spitter;
+import java.util.List;
 
+import spittr.domain.Spitter;
+
+/**
+ * Repository interface with operations for {@link Spitter} persistence.
+ */
 public interface SpitterRepository {
 
+  long count();
+
   Spitter save(Spitter spitter);
-  
+
+  Spitter findOne(long id);
+
   Spitter findByUsername(String username);
 
+  List<Spitter> findAll();
+
 }
+
